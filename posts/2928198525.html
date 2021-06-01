@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.2/css/all.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css">
+
+<script class="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"panshuming.github.io","root":"/","images":"/images","scheme":"Gemini","version":"8.2.2","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":true,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"搜索...","empty":"没有找到任何搜索结果：${query}","hits_time":"找到 ${hits} 个搜索结果（用时 ${time} 毫秒）","hits":"找到 ${hits} 个搜索结果"}};
+  </script>
+<meta name="description" content="查看所有api资源可以通过命令kubectl api-resources来查看索有api资源 123456789101112[root@node01 ~]# kubectl api-resourcesNAME                              SHORTNAMES   APIGROUP                       NAMESPACED   KINDbindi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="查看K8S资源">
+<meta property="og:url" content="http://panshuming.github.io/posts/2928198525.html">
+<meta property="og:site_name" content="界天河地">
+<meta property="og:description" content="查看所有api资源可以通过命令kubectl api-resources来查看索有api资源 123456789101112[root@node01 ~]# kubectl api-resourcesNAME                              SHORTNAMES   APIGROUP                       NAMESPACED   KINDbindi">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-02-02T09:12:33.000Z">
+<meta property="article:modified_time" content="2021-06-01T06:14:27.536Z">
+<meta property="article:author" content="panshuming">
+<meta property="article:tag" content="K8S">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="canonical" href="http://panshuming.github.io/posts/2928198525.html">
+
+
+<script class="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+<title>查看K8S资源 | 界天河地</title>
+  
+
+
+
+
+  <noscript>
+  <style>
+  body { margin-top: 2rem; }
+
+  .use-motion .menu-item,
+  .use-motion .sidebar,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header {
+    visibility: visible;
+  }
+
+  .use-motion .header,
+  .use-motion .site-brand-container .toggle,
+  .use-motion .footer { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle,
+  .use-motion .custom-logo-image {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line {
+    transform: scaleX(1);
+  }
+
+  .search-pop-overlay, .sidebar-nav { display: none; }
+  .sidebar-panel { display: block; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">界天河地</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签</a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类</a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档</a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89api%E8%B5%84%E6%BA%90"><span class="nav-text">查看所有api资源</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9F%A5%E7%9C%8Bapi%E7%89%88%E6%9C%AC"><span class="nav-text">查看api版本</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E9%80%9A%E8%BF%87kubectl-explain%E6%9F%A5%E7%9C%8Bapi%E5%AD%97%E6%AE%B5"><span class="nav-text">通过kubectl explain查看api字段</span></a></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">panshuming</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+
+
+  <div class="links-of-blogroll site-overview-item animated">
+    <div class="links-of-blogroll-title"><i class="fa fa-globe fa-fw"></i>
+      Links
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://getemoji.com/" title="https:&#x2F;&#x2F;getemoji.com" rel="noopener" target="_blank">Copy and Paste Emoji</a>
+        </li>
+    </ul>
+  </div>
+
+        </div>
+      </div>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://panshuming.github.io/posts/2928198525.html">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="panshuming">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="界天河地">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          查看K8S资源
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">发表于</span>
+
+      <time title="创建时间：2021-02-02 17:12:33" itemprop="dateCreated datePublished" datetime="2021-02-02T17:12:33+08:00">2021-02-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">更新于</span>
+        <time title="修改时间：2021-06-01 14:14:27" itemprop="dateModified" datetime="2021-06-01T14:14:27+08:00">2021-06-01</time>
+      </span>
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-folder"></i>
+      </span>
+      <span class="post-meta-item-text">分类于</span>
+        <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+          <a href="/categories/K8S/" itemprop="url" rel="index"><span itemprop="name">K8S</span></a>
+        </span>
+    </span>
+
+  
+    <span class="post-meta-item" title="阅读次数" id="busuanzi_container_page_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="far fa-eye"></i>
+      </span>
+      <span class="post-meta-item-text">阅读次数：</span>
+      <span id="busuanzi_value_page_pv"></span>
+    </span>
+      </div>
+      <div class="post-meta">
+    <span class="post-meta-item" title="本文字数">
+      <span class="post-meta-item-icon">
+        <i class="far fa-file-word"></i>
+      </span>
+      <span class="post-meta-item-text">本文字数：</span>
+      <span>2.8k</span>
+    </span>
+    <span class="post-meta-item" title="阅读时长">
+      <span class="post-meta-item-icon">
+        <i class="far fa-clock"></i>
+      </span>
+      <span class="post-meta-item-text">阅读时长 &asymp;</span>
+      <span>3 分钟</span>
+    </span>
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <h3 id="查看所有api资源"><a href="#查看所有api资源" class="headerlink" title="查看所有api资源"></a>查看所有api资源</h3><p>可以通过命令<code>kubectl api-resources</code>来查看索有api资源</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 ~]<span class="comment"># kubectl api-resources</span></span><br><span class="line">NAME                              SHORTNAMES   APIGROUP                       NAMESPACED   KIND</span><br><span class="line">bindings                                                                      <span class="literal">true</span>         Binding</span><br><span class="line">componentstatuses                 cs                                          <span class="literal">false</span>        ComponentStatus</span><br><span class="line">configmaps                        cm                                          <span class="literal">true</span>         ConfigMap</span><br><span class="line">endpoints                         ep                                          <span class="literal">true</span>         Endpoints</span><br><span class="line">events                            ev                                          <span class="literal">true</span>         Event</span><br><span class="line">limitranges                       limits                                      <span class="literal">true</span>         LimitRange</span><br><span class="line">namespaces                        ns                                          <span class="literal">false</span>        Namespace</span><br><span class="line">nodes                             no                                          <span class="literal">false</span>        Node</span><br><span class="line">persistentvolumeclaims            pvc                                         <span class="literal">true</span>         PersistentVolumeClaim</span><br><span class="line">。。。</span><br></pre></td></tr></table></figure>
+
+<p>除了可以看到资源的对象名称外，还可以看到对象的别名，这时候我们再看到别人的命令如<code>kubectl get no</code>这样费解的命令时就可以知道它实际上代表的是<code>kubectl get nodes</code>命令</p>
+<blockquote>
+<p>查看api的版本，很多yaml配置里都需要指定配置的资源版本，我们经常看到v1、apps/v1这样的配置，到底某个资源的最新版本 是什么呢？</p>
+</blockquote>
+<h3 id="查看api版本"><a href="#查看api版本" class="headerlink" title="查看api版本"></a>查看api版本</h3><p>可以通过<code>kubectl api-versions</code>来查看api的版本</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 ~]<span class="comment"># kubectl api-versions</span></span><br><span class="line">admissionregistration.k8s.io/v1</span><br><span class="line">admissionregistration.k8s.io/v1beta1</span><br><span class="line">apiextensions.k8s.io/v1</span><br><span class="line">apiextensions.k8s.io/v1beta1</span><br><span class="line">apiregistration.k8s.io/v1</span><br><span class="line">apiregistration.k8s.io/v1beta1</span><br><span class="line">apps/v1</span><br><span class="line">authentication.k8s.io/v1</span><br><span class="line">authentication.k8s.io/v1beta1</span><br><span class="line">authorization.k8s.io/v1</span><br><span class="line">。。。</span><br></pre></td></tr></table></figure>
+
+<p>以上只是整体概况，很多时候我们还想要看到某个api下面都有哪些配置，某一推荐配置的含义等，下面罗列一些查看api的技巧</p>
+<h3 id="通过kubectl-explain查看api字段"><a href="#通过kubectl-explain查看api字段" class="headerlink" title="通过kubectl explain查看api字段"></a>通过<code>kubectl explain</code>查看api字段</h3><ol>
+<li>通过<code>kubectl explain &lt;资源对象名称&gt;</code>查看某个资源对象拥有的字段</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 ~]<span class="comment"># kubectl explain deployment</span></span><br><span class="line">KIND:     Deployment</span><br><span class="line">VERSION:  apps/v1</span><br><span class="line"></span><br><span class="line">DESCRIPTION:</span><br><span class="line">     Deployment enables declarative updates <span class="keyword">for</span> Pods and ReplicaSets.</span><br><span class="line"></span><br><span class="line">FIELDS:</span><br><span class="line">   apiVersion   &lt;string&gt;</span><br><span class="line">     APIVersion defines the versioned schema of this representation of an</span><br><span class="line">     object. Servers should convert recognized schemas to the latest internal</span><br><span class="line">     value, and may reject unrecognized values. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md<span class="comment">#resources</span></span><br><span class="line"></span><br><span class="line">   kind &lt;string&gt;</span><br><span class="line">     Kind is a string value representing the REST resource this object</span><br><span class="line">     represents. Servers may infer this from the endpoint the client submits</span><br><span class="line">     requests to. Cannot be updated. In CamelCase. More info:</span><br><span class="line">     https://git.k8s.io/community/contributors/devel/sig-architecture/api-conventions.md<span class="comment">#types-kinds</span></span><br><span class="line"></span><br><span class="line">   metadata     &lt;Object&gt;</span><br><span class="line">     Standard object metadata.</span><br><span class="line">。。。</span><br></pre></td></tr></table></figure>
+
+<p>以上<code>DESCRIPTION</code>是对资源对象的简要描述，<code>FIELDS</code>则是对所有字段的描述。</p>
+<ol start="2">
+<li>列出所有api字段</li>
+</ol>
+<p>想要罗列出索有的字段，可以加上<code>--recursive</code>来列出索有可能的字段。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 ~]<span class="comment"># kubectl explain deployment --recursive</span></span><br><span class="line">KIND:     Deployment</span><br><span class="line">VERSION:  apps/v1</span><br><span class="line"></span><br><span class="line">DESCRIPTION:</span><br><span class="line">     Deployment enables declarative updates <span class="keyword">for</span> Pods and ReplicaSets.</span><br><span class="line"></span><br><span class="line">FIELDS:</span><br><span class="line">   apiVersion   &lt;string&gt;</span><br><span class="line">   kind &lt;string&gt;</span><br><span class="line">   metadata     &lt;Object&gt;</span><br><span class="line">      annotations       &lt;map[string]string&gt;</span><br><span class="line">      clusterName       &lt;string&gt;</span><br><span class="line">      creationTimestamp &lt;string&gt;</span><br><span class="line">      deletionGracePeriodSeconds        &lt;<span class="built_in">integer</span>&gt;</span><br><span class="line">      deletionTimestamp &lt;string&gt;</span><br><span class="line">      finalizers        &lt;[]string&gt;</span><br><span class="line">      generateName      &lt;string&gt;</span><br><span class="line">      generation        &lt;<span class="built_in">integer</span>&gt;</span><br><span class="line">      labels    &lt;map[string]string&gt;</span><br><span class="line">。。。</span><br></pre></td></tr></table></figure>
+
+<p>以上输出的内容是经过格式化了的，我们可以根据缩进很容易看到某一个字段从属关系</p>
+<ol start="3">
+<li>查看具体字段</li>
+</ol>
+<p>如果想要知道某一个api名称的详细信息，则可以通过<code>kubectl explain &lt;资源对象名称.api名称&gt;</code>的方式来查看</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@node01 ~]<span class="comment"># kubectl explain deployment.status.updatedReplicas</span></span><br><span class="line">KIND:     Deployment</span><br><span class="line">VERSION:  apps/v1</span><br><span class="line"></span><br><span class="line">FIELD:    updatedReplicas &lt;<span class="built_in">integer</span>&gt;</span><br><span class="line"></span><br><span class="line">DESCRIPTION:</span><br><span class="line">     Total number of non-terminated pods targeted by this deployment that have</span><br><span class="line">     the desired template spec.</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/K8S/" rel="tag"><i class="fa fa-tag"></i> K8S</a>
+          </div>
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/posts/1332211608.html" rel="prev" title="抽象方法">
+                  <i class="fa fa-chevron-left"></i> 抽象方法
+                </a>
+            </div>
+            <div class="post-nav-item">
+                <a href="/posts/4162944556.html" rel="next" title="Spring源码">
+                  Spring源码 <i class="fa fa-chevron-right"></i>
+                </a>
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      const activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      const commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 2020 – 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">panshuming</span>
+</div>
+<div class="wordcount">
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-chart-line"></i>
+    </span>
+    <span title="站点总字数">3k</span>
+  </span>
+  <span class="post-meta-item">
+    <span class="post-meta-item-icon">
+      <i class="fa fa-coffee"></i>
+    </span>
+    <span title="站点阅读时长">3 分钟</span>
+  </span>
+</div>
+<div class="busuanzi-count">
+    <span class="post-meta-item" id="busuanzi_container_site_uv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-user"></i>
+      </span>
+      <span class="site-uv" title="总访客量">
+        <span id="busuanzi_value_site_uv"></span>
+      </span>
+    </span>
+    <span class="post-meta-item" id="busuanzi_container_site_pv" style="display: none;">
+      <span class="post-meta-item-icon">
+        <i class="fa fa-eye"></i>
+      </span>
+      <span class="site-pv" title="总访问量">
+        <span id="busuanzi_value_site_pv"></span>
+      </span>
+    </span>
+</div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js"></script>
+<script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script>
+
+  
+
+
+
+
+
+
+  
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
